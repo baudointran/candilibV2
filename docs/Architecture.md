@@ -16,3 +16,5 @@ La partie ``persistance des données`` garantie :
 * l'intégrité
 
 Le schéma ci-dessous synthésite ces principes d'architecture.
+
+![Architecture générale](https://raw.github.com/LAB-MI/candilibV2/docs/principes/docs/archi_gene_candilib-Page-2.svg?sanitize=true)
