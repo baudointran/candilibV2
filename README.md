@@ -12,11 +12,11 @@ Code source de l'application pour que les usagers réservent eux-mêmes leur pla
 cd server
 docker-compose -f docker-compose.dev.db.yml up
 ```
-
 #### Lancer les tests côté serveur
 
 ```bash
 cd server
+npm install
 npm test
 ```
 
@@ -24,7 +24,8 @@ npm test
 
 ```bash
 cd server
-npm test:watch
+npm install
+npm run test:watch
 ```
 
 #### Lancer le serveur en mode dev

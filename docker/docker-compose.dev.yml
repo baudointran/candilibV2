@@ -1,0 +1,71 @@
+version: '3.4'
+services:
+  back:
+    image: candilib_v2_back:${APP_VERSION:-latest}
+    build:
+      context: ../server
+      dockerfile: ../docker/Dockerfile.back
+      target: development
+      args:
+          proxy: ${http_proxy}
+          no_proxy: ${no_proxy}
+          npm_registry: ${NPM_REGISTRY}
+    volumes:
+      - ../server/config:/usr/src/app/config
+      - ../server/src:/usr/src/app/src
+      - ../server/babel.config.js:/usr/src/app/babel.config.js
+      - ../server/boot-dev.js:/usr/src/app/boot-dev.js
+      - ../server/package-lock.json:/usr/src/app/package-lock.json
+      - ../server/package.json:/usr/src/app//package.json
+    container_name: candilib_v2_back
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: development
+      MONGO_URL: ${MONGO_URL:-mongodb://db:27017/candilib}
+    ports:
+      - "${WEB_PORT:-8000}:8000"
+    networks:
+      - candilib-v2-network
+  db:
+    image: mongo:latest
+    container_name: candilib_v2_db
+    volumes:
+      - ../../mongo-dev/db:/data/db
+    ports:
+      - "${WEB_PORT:-27017}:27017"
+    networks:
+    - candilib-v2-network
+  back.test:
+    image: candilib_v2_back.test:${APP_VERSION:-latest}
+    build:
+      context: ../server
+      dockerfile: ../docker/Dockerfile.back
+      target: test
+      args:
+          proxy: ${http_proxy}
+          no_proxy: ${no_proxy}
+          npm_registry: ${NPM_REGISTRY}
+    volumes:
+      - ../server/config:/usr/src/app/config
+      - ../server/src:/usr/src/app/src
+      - ../server/babel.config.js:/usr/src/app/babel.config.js
+      - ../server/boot-dev.js:/usr/src/app/boot-dev.js
+      - ../server/package-lock.json:/usr/src/app/package-lock.json
+      - ../server/package.json:/usr/src/app//package.json
+    container_name: candilib_v2_back.test
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: development
+      MONGO_URL: ${MONGO_URL:-mongodb://db:27017/candilib}
+    ports:
+      - "${WEB_PORT:-8000}:8000"
+    networks:
+      - candilib-v2-network
+
+networks:
+  candilib-v2-network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 1450
