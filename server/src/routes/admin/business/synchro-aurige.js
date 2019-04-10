@@ -165,6 +165,8 @@ export const synchroAurige = async buffer => {
         return candidat
           .save()
           .then(async candidat => {
+            console.log('candidat saved')
+            console.log({ candidat })
             if (isValidatedByAurige) {
               appLogger.info(`Ce candidat ${candidat.email} a été mis à jour`)
               return getCandidatStatus(

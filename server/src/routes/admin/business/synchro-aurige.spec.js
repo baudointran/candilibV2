@@ -217,6 +217,7 @@ describe('synchro-aurige', () => {
         canBookAfter: 1,
         places: 1,
       })
+      console.log({ candidat })
       const { canBookAfter } = candidat
       const dateTimeCanBookAfter = DateTime.fromISO(
         candidatFailureExam.dateDernierEchecPratique
