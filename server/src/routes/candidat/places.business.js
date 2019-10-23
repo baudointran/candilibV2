@@ -465,6 +465,7 @@ export const addInfoDateToRulesResa = async (candidatId, reservation) => {
     dayToForbidCancel,
   }
 }
+
 /**
  * @async
  * @function validCentreDateReservation
