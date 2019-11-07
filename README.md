@@ -162,3 +162,8 @@ npm start
 C'est le répertoire `dist` qui contient l'application.
 C'est le fichier `index.js` dans ce répertoire qui est lancé.
 
+# Annexes
+- [Principes](docs/Principes.md)
+- [Architecture](docs/Architecture.md)
+
+
