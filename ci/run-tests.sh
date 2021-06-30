@@ -63,6 +63,7 @@ fi
 
 ret=1
 echo "# e2e tests"
+export CYPRESS_ARG="--spec tests/e2e/specs/interactions.js"
 time make up-e2e
 ret=$?
 if [ "$ret" -gt 0 ] ; then
