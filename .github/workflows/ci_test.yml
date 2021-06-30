@@ -44,7 +44,7 @@ jobs:
         if: ${{ failure() }}
         uses: actions/upload-artifact@v2
         with:
-          name: screenshot test:e2e
+          name: screenshot test_e2e
           path: client/tests/e2e/screenshots
           retention-days: 1
         
